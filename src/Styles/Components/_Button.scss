@@ -1,0 +1,153 @@
+$standard-transition-timing: 137ms;
+
+.button {
+  display: flex;
+}
+
+a.button {
+  display: inline-flex;
+}
+
+.button,
+a.button {
+  align-items: center;
+  height: 36px;
+  line-height: 2.25;
+  padding: 0 20px;
+  background: $gray--900;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2px;
+  @include bodyFont();
+  color: $white;
+  font-size: .75em;
+  user-select: none;
+  cursor: pointer;
+  transition: $standard-transition-timing background ease;
+
+  &.button--input {
+    height: 33px;
+    border-radius: 0 3px 3px 0;
+  }
+
+  &.a {
+    font-size: 1em;
+    text-transform: none;
+    color: $secondary !important;
+    cursor: pointer;
+    text-decoration-skip-ink: auto;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: shade($secondary, 20%);
+      outline: none;
+      text-decoration: underline;
+    }
+  }
+
+  &[disabled] {
+    opacity: .2;
+    color: $off-white;
+    cursor: not-allowed;
+
+    &:hover {
+      background: $gray--900;
+    }
+  }
+
+  &:focus {
+    outline: 1px solid $gray--900;
+    outline-offset: 1px;
+  }
+
+  &:active {
+    background: shade($gray--900, 10%);
+  }
+
+  &.button--collapsed {
+    padding: 0;
+    height: auto;
+    text-transform: none;
+
+    &:focus {
+      outline-color: $secondary;
+    }
+  }
+
+  &.button--transparent {
+    background: none;
+    color: $gray--900;
+    transition: $standard-transition-timing color ease;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  &.button--white {
+    border: 2px solid $gray--900;
+    color: $gray--900;
+    background: $white;
+    transition: $standard-transition-timing color ease;
+
+    &:hover {
+      border: 2px solid $secondary;
+      background: $secondary;
+      color: $white;
+    }
+  }
+
+  &.button--ghost {
+    border: 2px solid $gray--900;
+    color: $gray--900;
+    background: none;
+    transition: $standard-transition-timing color ease;
+  }
+
+  &.button--ghost--light {
+    border: 2px solid $gray--200;
+    color: $gray--400;
+    background: none;
+    transition: $standard-transition-timing color ease;
+  }
+
+  &.button--ghost--white {
+    border: 2px solid $white;
+    color: $white;
+    background: none;
+    transition: $standard-transition-timing color ease;
+  }
+
+  &.button--ghost:hover,
+  &.button--ghost--white:hover {
+    border: 2px solid $secondary;
+    background: $secondary;
+    color: $white;
+  }
+
+  &.button--white-text {
+    @include bodyFont();
+    color: $white;
+
+    &:hover {
+      color: shade($white, 20%);
+    }
+  }
+
+  &.button--dashed,
+  &.button--dashed:hover {
+    border: 2px dashed $gray--200;
+    background-color: $gray--050;
+    color: $primary;
+  }
+}
+
+.button__children {
+  display: flex;
+  align-items: center;
+
+  span:not(.visually-hidden) + span {
+    padding-left: 12px;
+  }
+}

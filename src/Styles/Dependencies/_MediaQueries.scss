@@ -1,0 +1,38 @@
+// Adapted from: https://github.com/brindille/stylus-media-queries
+
+// MEDIA QUERIES
+$media-xsmall: 20em; // 320px
+$media-small: 30em; // 480px
+$media-medium: 48.063em; // 769px
+$media-large: 64em; // 1024px
+$media-xlarge: 80em; // 1280px
+$media-xxlarge: 90em; //1440px
+
+///////////////////
+//  SCREEN SIZE  //
+///////////////////
+@mixin screen($res-min, $res-max, $orientation: false) {
+  @if $orientation {
+    @media screen and (min-width: $res-min) and (max-width: $res-max)
+    and (orientation:#{$orientation}) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $res-min) and (max-width: $res-max) {
+      @content;
+    }
+  }
+}
+
+@mixin minScreen($res) {
+  @media screen and (min-width: $res) {
+    @content;
+  }
+}
+
+@mixin maxScreen($res) {
+  @media screen and (max-width: $res) {
+    @content;
+  }
+}

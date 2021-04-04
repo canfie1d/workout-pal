@@ -1,0 +1,17 @@
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  margin-left: -1px;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.drop-shadow {
+  filter: drop-shadow(1px 1px 1px #000);
+}

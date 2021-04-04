@@ -1,0 +1,38 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  background: $primary;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 12px;
+}
+
+.footer__text {
+  @include bodyFont();
+  color: $gray--400;
+  line-height: 1.625;
+  font-size: .75em;
+}
+
+.footer__list {
+  margin: auto;
+}
+
+.footer__item {
+  display: inline-block;
+  padding: 0 1em;
+
+  a {
+    color: $secondary;
+
+    &:visited {
+      color: $secondary;
+    }
+
+    &:first-of-type {
+      margin-right: 2em;
+    }
+  }
+}

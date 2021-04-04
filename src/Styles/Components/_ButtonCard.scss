@@ -1,0 +1,53 @@
+.button-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 12px;
+  border: 1px solid $gray--100;
+  border-radius: 6px;
+  background: $gray--050;
+
+  &:focus {
+    outline: 1px solid $secondary;
+    outline-offset: 1px;
+  }
+
+  .button-card__children {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .button-card__icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background: $secondary;
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
+
+  .button-card__text {
+    @include bodyFontBold();
+    color: $secondary;
+    font-size: 1em;
+    text-transform: uppercase;
+  }
+
+  &[disabled] {
+    .button-card__icon-wrapper {
+      background: $gray--100;
+    }
+
+    .button-card__text {
+      color: $gray--100;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import './Styles/Dependencies/Reset.scss';
+@import './Styles/ApplicationSettings.scss';
+@import './Styles/Dependencies/Colors.scss';
+@import './Styles/Dependencies/Fonts.scss';
+@import './Styles/Dependencies/Functions.scss';
+@import './Styles/Dependencies/MediaQueries.scss';
+@import './Styles/Dependencies/Typography.scss';
+@import './Styles/Dependencies/TimingFunctions.scss';
+@import './Styles/Dependencies/Helpers.scss';
+@import './Styles/Base.scss';
+@import './Styles/Layout/Header.scss';
+@import './Styles/Layout/Nav.scss';
+@import './Styles/Layout/Layout.scss';
+@import './Styles/Layout/Footer.scss';
+@import './Styles/Layout/Footer.scss';
+@import './Styles/Layout/Flex.scss';
+
+@import './Styles/Components/Button';
+@import './Styles/Components/ButtonCard';
+@import './Styles/Components/Card';
+@import './Styles/Components/Icon';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

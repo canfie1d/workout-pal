@@ -1,0 +1,121 @@
+//////////////////////
+// Base icon styles //
+//////////////////////
+
+// <span class="icon [icon--[name] icon--rotate-[val] icon--[color]]">
+//   <svg />
+// </span>
+
+.icon {
+  position: relative;
+  display: block;
+  width: rem(24);
+  height: rem(24);
+  background: transparent;
+  pointer-events: none;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// size modifiers
+.icon--xx-small {
+  width: rem(6);
+  height: rem(6);
+}
+
+.icon--x-small {
+  width: rem(10);
+  height: rem(10);
+}
+
+.icon--small {
+  width: rem(16);
+  height: rem(16);
+}
+
+.icon--smedium {
+  width: rem(20);
+  height: rem(20);
+}
+
+.icon--large {
+  width: rem(32);
+  height: rem(32);
+}
+
+.icon--x-large {
+  width: rem(40);
+  height: rem(40);
+}
+
+.icon--full {
+  width: inherit;
+  height: auto;
+}
+
+// rotation modifiers
+.icon--rotate-45 {
+  transform: rotate(45deg);
+}
+
+.icon--rotate-90 {
+  transform: rotate(90deg);
+}
+
+.icon--rotate-180 {
+  transform: rotate(180deg);
+}
+
+.icon--rotate-270 {
+  transform: rotate(270deg);
+}
+
+// color modifiers
+.icon--black {
+  fill: $black;
+}
+
+.icon--core-dark {
+  fill: $primary;
+}
+
+.icon--gray {
+  fill: $gray--700;
+}
+
+.icon--white {
+  fill: $white;
+}
+
+.icon--secondary {
+  fill: $secondary;
+}
+
+.icon--off-white {
+  fill: $off-white;
+}
+
+.icon--status--success {
+  fill: $status--success;
+}
+
+.icon--status--warning {
+  fill: $status--warning;
+}
+
+.icon--status--error {
+  fill: $status--error;
+}
+
+.icon--current-color {
+  fill: currentColor;
+}
+
+.icon--inline {
+  display: inline-block;
+}

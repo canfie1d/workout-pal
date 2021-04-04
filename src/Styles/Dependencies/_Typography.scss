@@ -1,0 +1,81 @@
+h1, .h1 {
+  @include displayFontBold();
+  line-height: 1.2;
+  font-size: rem(28);
+  color: $primary;
+
+  @include minScreen($media-small) {
+    font-size: rem(32);
+  }
+
+  @include minScreen($media-medium) {
+    font-size: rem(36);
+  }
+}
+
+h2, .h2 {
+  @include displayFont();
+  font-size: rem(22);
+  line-height: 1.2;
+  color: $primary;
+
+  @include minScreen($media-small) {
+    font-size: rem(26);
+  }
+
+  @include minScreen($media-medium) {
+    font-size: rem(30);
+  }
+}
+
+h3, .h3 {
+  @include displayFontBold();
+  font-size: rem(20);
+  line-height: 1.2;
+  margin-bottom: rem(20);
+}
+
+p, .p {
+  @include bodyFont();
+  font-size: rem(18);
+  max-width: rem(700);
+  line-height: 1.5;
+
+  &:not(:last-child) {
+    margin-bottom: rem(36);
+  }
+}
+
+a, .a {
+  color: $secondary;
+  text-decoration-skip-ink: auto;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:focus {
+    outline: 1px solid $primary;
+    outline-offset: 4px;
+  }
+
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a {
+  &::selection {
+    background: $secondary;
+  }
+  &::-moz-selection {
+    background: $secondary;
+  }
+}
+
+label {
+  display: block;
+  @include bodyFont();
+  color: $primary;
+  font-size: rem(18);
+}
