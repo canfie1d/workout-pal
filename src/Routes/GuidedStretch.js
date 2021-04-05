@@ -104,7 +104,7 @@ const GuidedStretch = props => {
             <Flex.Column>
               <Badge count={timer} />
             </Flex.Column>
-            <Button onClick={handleAutoAdvance}>{autoAdvance ? 'Pause' : 'Start'}</Button>
+            <Button onClick={handleAutoAdvance}>{autoAdvance ? 'Stop' : 'Start'}</Button>
           </Flex>
         </Flex.Column>
       </Flex>
