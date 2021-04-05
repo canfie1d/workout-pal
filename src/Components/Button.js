@@ -95,7 +95,6 @@ Button.propTypes = {
     'ghost',
     'ghost--light',
     'ghost--white',
-    'magenta',
     'white',
     'dashed'
   ]),

@@ -1,0 +1,29 @@
+$size: 36px;
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $size;
+  min-width: $size;
+  margin-left: 5px;
+  padding: 4px;
+  background: $secondary;
+  border-radius: calc(#{$size} / 2);
+
+  &.badge--small {
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    min-width: 0;
+
+    .badge__content {
+      @extend .visually-hidden;
+    }
+  }
+
+  .badge__content {
+    display: block;
+    color: $white;
+  }
+}

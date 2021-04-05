@@ -4,11 +4,26 @@ import { stretches } from '../Data/stretches';
 import Button from "../Components/Button";
 import WorkoutCard from "../Components/WorkoutCard";
 import Flex from "../Layout/Flex";
+import Badge from '../Components/Badge';
+import Icon from "../Components/Icon";
 
-const GuidedWorkout = props => {
+const GuidedStretch = props => {
   const history = useHistory();
-  const [stretchNumber, setStretchNumber] = useState(4);
+  const [stretchNumber, setStretchNumber] = useState(0);
   const [autoAdvance, setAutoAdvance] = useState(false);
+  const [timer, setTimer] = useState(60);
+
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      if (stretchNumber === stretches.length - 1) {
+        setAutoAdvance(false);
+      } else if (autoAdvance) {
+        setStretchNumber(stretchNumber + 1);
+      }
+    }, 60000);
+
+    return () => clearInterval(slideTimer);
+  }, [autoAdvance, stretchNumber]); // eslint-disable-line
 
   useEffect(() => {
     if (stretchNumber === stretches.length - 1) {
@@ -19,6 +34,22 @@ const GuidedWorkout = props => {
       }, 60000)
     }
   }, [autoAdvance, stretchNumber]); // eslint-disable-line
+
+  useEffect(() => {
+    const clockTimer = setInterval(() => {
+      if (autoAdvance) {
+        if (timer > 0) {
+          setTimer(timer - 1);
+        } else {
+          setTimer(60);
+        }
+      } else {
+        setTimer(60);
+      }
+    }, 1000);
+
+    return () => clearInterval(clockTimer);
+  }, [autoAdvance, timer, stretchNumber]);
 
   const handleAutoAdvance = () => {
     setAutoAdvance(!autoAdvance);
@@ -64,22 +95,32 @@ const GuidedWorkout = props => {
   return (
     <>
       <Flex style={{marginBottom: '24px'}} justify='space-between'>
-        <Button onClick={history.goBack}>Complete Guided Stretch</Button>
-        <Button onClick={handleAutoAdvance}>{autoAdvance ? 'Pause' : 'Start'}</Button>
+        <Button color='transparent' collapsed onClick={history.goBack}>
+          <span className='visually-hidden'>Go back to workout overview</span>
+          <Icon name='Caret' color='primary' rotate={90} size='x-large' />
+        </Button>
+        <Flex.Column grow={0}>
+          <Flex alignment='center'>
+            <Flex.Column>
+              <Badge count={timer} />
+            </Flex.Column>
+            <Button onClick={handleAutoAdvance}>{autoAdvance ? 'Pause' : 'Start'}</Button>
+          </Flex>
+        </Flex.Column>
       </Flex>
       <Flex style={{width: '100%', overflow: 'hidden'}}>
         {renderStretchCards()}
       </Flex>
       <Flex justify='center'>
         <Flex.Column grow={0}>
-          <Button onClick={handlePreviousClick}>Previous</Button>
+          <Button color='ghost' onClick={handlePreviousClick}>Previous</Button>
         </Flex.Column>
         <Flex.Column grow={0}>
-          <Button onClick={stretchNumber === stretches.length - 1 ? history.goBack : handleNextClick}>{stretchNumber === stretches.length - 1 ? 'Complete Stretching' : 'Next'}</Button>
+          <Button color='ghost' onClick={stretchNumber === stretches.length - 1 ? history.goBack : handleNextClick}>{stretchNumber === stretches.length - 1 ? 'Complete Stretching' : 'Next'}</Button>
         </Flex.Column>
       </Flex>
     </>
   );
 }
 
-export default GuidedWorkout;
+export default GuidedStretch;

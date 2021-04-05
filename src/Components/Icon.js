@@ -30,7 +30,7 @@ const Icon = props => {
       })
 
       return () => setIsMounted(false);
-  }, []); // eslint-disable-line
+  }, [isMounted]); // eslint-disable-line
 
   const classes = [
     'icon',
@@ -50,7 +50,7 @@ const Icon = props => {
 };
 
 Icon.propTypes = {
-  icon: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   size: PropTypes.oneOf([
     'xx-small',
     'x-small',
@@ -69,11 +69,10 @@ Icon.propTypes = {
     270,
   ]),
   color: PropTypes.oneOf([
-    'core-dark',
+    'primary',
     'gray',
     'black',
     'white',
-    'magenta',
     'off-white',
     'status--success',
     'status--warning',

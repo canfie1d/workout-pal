@@ -4,6 +4,8 @@ import { schedule } from '../Data/schedule';
 import Button from "../Components/Button";
 import WorkoutCard from "../Components/WorkoutCard";
 import Flex from "../Layout/Flex";
+import Badge from '../Components/Badge';
+import Icon from '../Components/Icon';
 
 const GuidedWorkout = props => {
   const history = useHistory();
@@ -11,16 +13,35 @@ const GuidedWorkout = props => {
   const workout = schedule[`week${params.week}`][params.day];
   const [workoutNumber, setWorkoutNumber] = useState(0);
   const [autoAdvance, setAutoAdvance] = useState(false);
+  const [timer, setTimer] = useState(60);
 
   useEffect(() => {
-    if (workoutNumber === workout.workouts.length - 1) {
-      setAutoAdvance(false);
-    } else if (autoAdvance) {
-      setInterval(() => {
+    const slideTimer = setInterval(() => {
+      if (workoutNumber === workout.workouts.length - 1) {
+        setAutoAdvance(false);
+      } else if (autoAdvance) {
         setWorkoutNumber(workoutNumber + 1);
-      }, 60000)
-    }
+      }
+    }, 60000);
+
+    return () => clearInterval(slideTimer);
   }, [autoAdvance, workoutNumber]); // eslint-disable-line
+
+  useEffect(() => {
+    const clockTimer = setInterval(() => {
+      if (autoAdvance) {
+        if (timer > 0) {
+          setTimer(timer - 1);
+        } else {
+          setTimer(60);
+        }
+      } else {
+        setTimer(60);
+      }
+    }, 1000);
+
+    return () => clearInterval(clockTimer);
+  }, [autoAdvance, timer, workoutNumber]);
 
   const handleAutoAdvance = () => {
     setAutoAdvance(!autoAdvance);
@@ -49,7 +70,7 @@ const GuidedWorkout = props => {
         shrink={0}
         style={{marginBottom: '24px', transform: `translateX(-${workoutNumber * 100}%)`}}
       >
-        <WorkoutCard workout={workout} i={i} />
+        <WorkoutCard workout={workout} />
       </Flex.Column>
     ))
   }
@@ -57,18 +78,28 @@ const GuidedWorkout = props => {
   return (
     <>
       <Flex style={{marginBottom: '24px'}} justify='space-between'>
-        <Button onClick={history.goBack}>Complete Guided Workout</Button>
-        <Button onClick={handleAutoAdvance}>{autoAdvance ? 'Pause' : 'Start'}</Button>
+        <Button color='transparent' collapsed onClick={history.goBack}>
+          <span className='visually-hidden'>Go back to workout overview</span>
+          <Icon name='Caret' color='primary' rotate={90} size='x-large' />
+        </Button>
+        <Flex.Column grow={0}>
+          <Flex alignment='center'>
+            <Flex.Column>
+              <Badge count={timer} />
+            </Flex.Column>
+            <Button collapsed onClick={handleAutoAdvance}>{autoAdvance ? 'Stop' : 'Start'}</Button>
+          </Flex>
+        </Flex.Column>
       </Flex>
       <Flex style={{width: '100%', overflow: 'hidden'}}>
         {renderWorkoutCards(workout.workouts)}
       </Flex>
       <Flex justify='center'>
         <Flex.Column grow={0}>
-          <Button onClick={handlePreviousClick}>Previous</Button>
+          <Button color='ghost' onClick={handlePreviousClick}>Previous</Button>
         </Flex.Column>
         <Flex.Column grow={0}>
-          <Button onClick={workoutNumber === workout.workouts.length - 1 ? history.goBack : handleNextClick}>{workoutNumber === workout.workouts.length - 1 ? 'Complete Workout' : 'Next'}</Button>
+          <Button color='ghost' onClick={workoutNumber === workout.workouts.length - 1 ? history.goBack : handleNextClick}>{workoutNumber === workout.workouts.length - 1 ? 'Complete Workout' : 'Next'}</Button>
         </Flex.Column>
       </Flex>
     </>

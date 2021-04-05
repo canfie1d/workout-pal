@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   height: $headerHeight;
-  background: $primary;
+  border-bottom: 1px solid $gray--050;
   z-index: 10;
   padding: 20px 24px;
 }
