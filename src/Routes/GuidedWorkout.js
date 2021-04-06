@@ -87,7 +87,7 @@ const GuidedWorkout = props => {
             <Flex.Column>
               <Badge count={timer} />
             </Flex.Column>
-            <Button collapsed onClick={handleAutoAdvance}>{autoAdvance ? 'Stop' : 'Start'}</Button>
+            <Button onClick={handleAutoAdvance}>{autoAdvance ? 'Stop' : 'Start'}</Button>
           </Flex>
         </Flex.Column>
       </Flex>
