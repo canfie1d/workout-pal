@@ -30,13 +30,17 @@ const Workout = props => {
 
   return (
     <>
-      <PageHeader title={workout.title} subtitle={workout.desc} />
-      <Flex style={{marginBottom: '24px'}}>
+      <Flex alignment='center' justify='space-between'>
+        <PageHeader onBackClick={() => history.push('/')} title={workout.title} subtitle={workout.desc} />
         <Flex.Column grow={0}>
-          <Button onClick={() => history.push('/stretch/guided')}>Begin Guided Stretch</Button>
-        </Flex.Column>
-        <Flex.Column grow={0}>
-          <Button onClick={() => history.push(`/workout/${params.week}/${params.day}/guided`)}>Begin Guided Workout</Button>
+          <Flex style={{marginBottom: '24px'}}>
+            <Flex.Column grow={0}>
+              <Button onClick={() => history.push('/stretch/guided')}>Begin Guided Stretch</Button>
+            </Flex.Column>
+            <Flex.Column grow={0}>
+              <Button onClick={() => history.push(`/workout/${params.week}/${params.day}/guided`)}>Begin Guided Workout</Button>
+            </Flex.Column>
+          </Flex>
         </Flex.Column>
       </Flex>
       <h3>In This Workout</h3>

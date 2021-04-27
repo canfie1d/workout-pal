@@ -93,6 +93,7 @@ Button.propTypes = {
   /** Select button color */
   color: PropTypes.oneOf([
     'primary',
+    'secondary',
     'transparent',
     'ghost',
     'ghost--light',

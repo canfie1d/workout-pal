@@ -33,7 +33,7 @@ a.button {
   &.a {
     font-size: 1em;
     text-transform: none;
-    color: $secondary !important;
+    background: $secondary !important;
     cursor: pointer;
     text-decoration-skip-ink: auto;
 
@@ -41,8 +41,6 @@ a.button {
     &:active,
     &:focus {
       color: shade($secondary, 20%);
-      outline: none;
-      text-decoration: underline;
     }
   }
 

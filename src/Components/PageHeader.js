@@ -4,7 +4,7 @@ import Icon from "./Icon";
 
 const PageHeader = props => {
   return (
-    <Flex alignment='center' style={{padding: '24px 0 48px'}}>
+    <Flex className={props.className} alignment='center' style={{padding: '24px 0 48px'}}>
       {props.onBackClick && (
         <Flex.Column grow={0}>
           <Button color='transparent' collapsed onClick={props.onBackClick}>
