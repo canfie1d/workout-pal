@@ -78,6 +78,13 @@ const GuidedStretch = props => {
         how: stretch.desc,
         reps: stretch.reps
       }
+      const nextFormattedStretch = {
+        title: stretch.title,
+        superSet: `0${i + 2}`,
+        image: 'https://workout-cal.s3.us-east-2.amazonaws.com/how-to-warm-up.jpeg',
+        how: stretch.desc,
+        reps: stretch.reps
+      }
       return (
         <Flex.Column
           key={`stretch-${i}`}
@@ -86,8 +93,24 @@ const GuidedStretch = props => {
           shrink={0}
           style={{marginBottom: '24px', transform: `translateX(-${stretchNumber * 100}%)`}}
         >
-        <WorkoutCard workout={formattedStretch} onClick={() => {}} />
-      </Flex.Column>
+          <Flex alignment='center'>
+            <Flex.Column
+              basis='75%'
+              grow={0}
+              shrink={0}
+            >
+              <WorkoutCard workout={formattedStretch} />
+            </Flex.Column>
+            <Flex.Column
+              basis='25%'
+              grow={0}
+              shrink={0}
+            >
+              <h3>Up Next:</h3>
+              <WorkoutCard workout={nextFormattedStretch} />
+            </Flex.Column>
+          </Flex>
+       </Flex.Column>
       );
     })
   }
@@ -99,6 +122,14 @@ const GuidedStretch = props => {
           <span className='visually-hidden'>Go back to workout overview</span>
           <Icon name='Caret' color='primary' rotate={90} size='x-large' />
         </Button>
+        <Flex justify='center'>
+          <Flex.Column grow={0}>
+            <Button color='ghost' onClick={handlePreviousClick}>Previous</Button>
+          </Flex.Column>
+          <Flex.Column grow={0}>
+            <Button color='ghost' onClick={stretchNumber === stretches.length - 1 ? history.goBack : handleNextClick}>{stretchNumber === stretches.length - 1 ? 'Complete Stretching' : 'Next'}</Button>
+          </Flex.Column>
+        </Flex>
         <Flex.Column grow={0}>
           <Flex alignment='center'>
             <Flex.Column>
@@ -108,16 +139,8 @@ const GuidedStretch = props => {
           </Flex>
         </Flex.Column>
       </Flex>
-      <Flex style={{width: '100%', overflow: 'hidden'}}>
+      <Flex style={{width: '100%', overflow: 'hidden'}} alignment='center'>
         {renderStretchCards()}
-      </Flex>
-      <Flex justify='center'>
-        <Flex.Column grow={0}>
-          <Button color='ghost' onClick={handlePreviousClick}>Previous</Button>
-        </Flex.Column>
-        <Flex.Column grow={0}>
-          <Button color='ghost' onClick={stretchNumber === stretches.length - 1 ? history.goBack : handleNextClick}>{stretchNumber === stretches.length - 1 ? 'Complete Stretching' : 'Next'}</Button>
-        </Flex.Column>
       </Flex>
     </>
   );

@@ -1,9 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import { workouts } from '../Data/workouts';
-import ButtonCard from '../Components/ButtonCard';
 import PageHeader from '../Components/PageHeader';
-import ProgressiveImage from '../Components/ProgressiveImage';
 import Flex from '../Layout/Flex';
+import WorkoutCard from '../Components/WorkoutCard';
 
 const Workouts = props => {
   const history = useHistory();
@@ -21,10 +20,7 @@ const Workouts = props => {
         shrink={0}
         style={{marginBottom: '24px'}}
       >
-        <ButtonCard onClick={() => handleCardClick(i)}>
-          <h2 style={{marginBottom: '12px'}}>{workout.title}</h2>
-          <ProgressiveImage style={{maxWidth: '100%'}} src={workout.image} placeholderSrc='' />
-        </ButtonCard>
+        <WorkoutCard workout={workout} onClick={() => handleCardClick(i)} />
       </Flex.Column>
     ))
   }

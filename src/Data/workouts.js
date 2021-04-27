@@ -133,7 +133,7 @@ export const workouts = [
     why: 'The key to building bigger, wider shoulders is to make these muscles work through their full range of motion, so make sure you lower the dumbbells all the way back to the start position at the end of each rep.'
   },
   {
-    title: '1B Lateral Raise',
+    title: 'Lateral Raise',
     superSet: '1B',
     image: 'https://workout-cal.s3.us-east-2.amazonaws.com/4-1b-lateral-raise.jpeg',
     how: 'Stand with dumbbells by your sides and palms facing each other. Lean forward slightly, then raise the weights to the sides, leading with your elbows. Slowly lower them back to the start under control.',

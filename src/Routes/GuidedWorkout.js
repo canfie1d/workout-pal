@@ -62,17 +62,42 @@ const GuidedWorkout = props => {
   }
 
   const renderWorkoutCards = (workouts) => {
-    return workouts.map((workout, i) => (
-      <Flex.Column
-        key={`workout-${i}`}
-        basis='100%'
-        grow={0}
-        shrink={0}
-        style={{marginBottom: '24px', transform: `translateX(-${workoutNumber * 100}%)`}}
-      >
-        <WorkoutCard workout={workout} />
-      </Flex.Column>
-    ))
+    return workouts.map((workout, i) => {
+      return (
+        <Flex.Column
+          key={`workout-${i}`}
+          basis='100%'
+          grow={0}
+          shrink={0}
+          style={{marginBottom: '24px', transform: `translateX(-${workoutNumber * 100}%)`}}
+        >
+          <Flex alignment='center'>
+            <Flex.Column
+              basis='70%'
+              grow={0}
+              shrink={0}
+            >
+              <WorkoutCard workout={workout} />
+            </Flex.Column>
+            <Flex.Column
+              basis='30%'
+              grow={0}
+              shrink={0}
+            >
+              <h3>Up Next:</h3>
+              {workouts[i + 1] === undefined ?
+                <Button onClick={history.goBack}>Complete Workout</Button> :
+                <>
+                  <WorkoutCard workout={workouts[i + 1]} />
+                  {workouts[i + 1].rest !== undefined && (
+                    <h3>Rest: <span style={{whiteSpace: 'nowrap'}}>{workouts[i].rest} seconds</span></h3>
+                  )}
+                </>}
+            </Flex.Column>
+          </Flex>
+        </Flex.Column>
+      );
+    })
   }
 
   return (
@@ -82,6 +107,14 @@ const GuidedWorkout = props => {
           <span className='visually-hidden'>Go back to workout overview</span>
           <Icon name='Caret' color='primary' rotate={90} size='x-large' />
         </Button>
+        <Flex justify='center'>
+          <Flex.Column grow={0}>
+            <Button color='ghost' onClick={handlePreviousClick}>Previous</Button>
+          </Flex.Column>
+          <Flex.Column grow={0}>
+            <Button color='ghost' onClick={workoutNumber === workout.workouts.length - 1 ? history.goBack : handleNextClick}>{workoutNumber === workout.workouts.length - 1 ? 'Complete Workout' : 'Next'}</Button>
+          </Flex.Column>
+        </Flex>
         <Flex.Column grow={0}>
           <Flex alignment='center'>
             <Flex.Column>
@@ -93,14 +126,6 @@ const GuidedWorkout = props => {
       </Flex>
       <Flex style={{width: '100%', overflow: 'hidden'}}>
         {renderWorkoutCards(workout.workouts)}
-      </Flex>
-      <Flex justify='center'>
-        <Flex.Column grow={0}>
-          <Button color='ghost' onClick={handlePreviousClick}>Previous</Button>
-        </Flex.Column>
-        <Flex.Column grow={0}>
-          <Button color='ghost' onClick={workoutNumber === workout.workouts.length - 1 ? history.goBack : handleNextClick}>{workoutNumber === workout.workouts.length - 1 ? 'Complete Workout' : 'Next'}</Button>
-        </Flex.Column>
       </Flex>
     </>
   );

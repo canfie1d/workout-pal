@@ -2,8 +2,5 @@
   max-width: 1440px;
   margin: auto;
   padding: 24px;
-  // height: calc(100vh - #{$headerHeight});
-  // overflow: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  min-height: calc(100vh - 60px);
 }

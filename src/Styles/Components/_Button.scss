@@ -146,6 +146,7 @@ a.button {
 .button__children {
   display: flex;
   align-items: center;
+  white-space: nowrap;
 
   span:not(.visually-hidden) + span {
     padding-left: 12px;

@@ -10,6 +10,10 @@ const Workout = props => {
   const params = useParams();
   const workout = schedule[`week${params.week}`][params.day];
 
+  const handleCardClick = i => {
+    history.push(`/browse/${i}`);
+  }
+
   const renderWorkoutCards = (workouts) => {
     return workouts.map((workout, i) => (
       <Flex.Column
@@ -19,7 +23,7 @@ const Workout = props => {
         shrink={0}
         style={{marginBottom: '24px'}}
       >
-        <WorkoutCard workout={workout} />
+        <WorkoutCard workout={workout} onClick={() => handleCardClick(i)} />
       </Flex.Column>
     ))
   }

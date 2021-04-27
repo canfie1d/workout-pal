@@ -22,6 +22,7 @@ const Button = props => {
       to={props.to}
       onClick={props.onClick}
       aria-label={props.ariaLabel}
+      style={props.style}
     >
       {props.children}
     </Link> :
@@ -43,6 +44,7 @@ const Button = props => {
         'data-event': props.dataEvent,
         'data-for': props.dataFor,
         download: props.download,
+        style: props.style,
       },
       createElement(
         'span',
